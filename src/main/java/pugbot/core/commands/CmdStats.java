@@ -75,7 +75,7 @@ public class CmdStats extends Command {
 				embedBuilder.setFooter(new String(new char[100]).replace('\0', '-'), null);
 			}
 			
-			return messageBuilder.append(String.format("`%s's stats`", player.getEffectiveName())).setEmbed(embedBuilder.build()).build();
+			return messageBuilder.append(String.format("`%s's stats`", getPlayerIgn(player))).setEmbed(embedBuilder.build()).build();
 		}
 	}
 

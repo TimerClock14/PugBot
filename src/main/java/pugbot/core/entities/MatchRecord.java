@@ -1,7 +1,6 @@
 package pugbot.core.entities;
 
-import net.dv8tion.jda.core.entities.Member;
-import pugbot.core.Database;
+import pugbot.Utils;
 
 public class MatchRecord {
 	public final long timestamp;
@@ -44,13 +43,11 @@ public class MatchRecord {
 
 	private String getCaptainNameFromId(long id) {
 		String name = null;
-		Member m = ServerManager.getGuild(serverId).getMemberById(id);
 		
-		if(m != null) {
-			name = m.getEffectiveName();
-		} else {
-			name = Database.queryGetUsername(id);
-		}
+		name = Utils.getPlayerIgn(
+			id,
+			ServerManager.getServer(serverId)
+		);
 		
 		return name;
 	}

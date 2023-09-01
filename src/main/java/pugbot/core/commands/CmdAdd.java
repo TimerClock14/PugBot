@@ -36,7 +36,7 @@ public class CmdAdd extends Command {
 		}
 		
 		boolean justFinished = qm.hasPlayerJustFinished(caller);
-		StringBuilder stringBuilder = new StringBuilder(caller.getEffectiveName() + " added to: ");
+		StringBuilder stringBuilder = new StringBuilder(caller.getNickname() + " added to: ");
 		
 		for(Queue queue : queueList){
 			if(!queue.isPlayerEligible(caller)){

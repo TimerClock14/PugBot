@@ -32,11 +32,11 @@ public class CmdSub extends Command {
 		}
 
 		if (qm.isPlayerIngame(substitute)) {
-			throw new InvalidUseException(substitute.getEffectiveName() + " is already in-game");
+			throw new InvalidUseException(getPlayerIgn(substitute) + " is already in-game");
 		}
 
 		if (!qm.isPlayerIngame(target)) {
-			throw new InvalidUseException(target.getEffectiveName() + " is not in-game");
+			throw new InvalidUseException(getPlayerIgn(target) + " is not in-game");
 		}
 
 		Game game = qm.getPlayersGame(target);
@@ -46,7 +46,7 @@ public class CmdSub extends Command {
 		qm.updateTopic();
 
 		return Utils.createMessage(String.format("`%s has been substituted with %s`",
-				target.getEffectiveName(), substitute.getEffectiveName()));
+				getPlayerIgn(target), getPlayerIgn(substitute)));
 	}
 
 	@Override

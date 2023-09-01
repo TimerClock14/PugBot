@@ -24,7 +24,7 @@ public class CmdDel extends Command {
 			
 			qm.updateTopic();
 			
-			return Utils.createMessage(String.format("%s deleted from all queues", caller.getEffectiveName()),
+			return Utils.createMessage(String.format("%s deleted from all queues", getPlayerIgn(caller)),
 					qm.getHeader(), true);
 		} else {
 			String queueNames = "";
@@ -41,7 +41,7 @@ public class CmdDel extends Command {
 			queueNames = queueNames.substring(0, queueNames.length() - 2);
 			
 			return Utils.createMessage(
-					String.format("%s deleted from %s", caller.getEffectiveName(), queueNames), qm.getHeader(), true);
+					String.format("%s deleted from %s", getPlayerIgn(caller), queueNames), qm.getHeader(), true);
 		}
 	}
 

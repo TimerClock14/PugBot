@@ -74,6 +74,7 @@ public class Database {
 					+ "Player("
 					+ "id INTEGER NOT NULL, "
 					+ "name VARCHAR(50) NOT NULL, "
+					+ "ign VARCHAR(50)"
 					+ "PRIMARY KEY (id)"
 					+ ")");
 			
@@ -1567,5 +1568,44 @@ public class Database {
 		}
 		
 		return name;
+	}
+
+	public static void setPlayerIgn(long serverId, long playerId, String ign) {
+		String sql = "UPDATE Player SET ign = ? WHERE id = ?";
+		
+		try(PreparedStatement statement = _conn.prepareStatement(sql)) {
+			statement.setObject(1, ign);
+			statement.setLong(2, playerId);
+			
+			statement.executeUpdate();
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}
+	}
+
+	public static String queryGetPlayerIgn(long serverId, long playerId) {
+		String sql = "SELECT name, ign FROM Player WHERE ign = ?";
+		String ign = null;
+		String name = null;
+		
+		try(PreparedStatement statement = _conn.prepareStatement(sql)){
+			statement.setLong(1, playerId);
+			
+			try(ResultSet rs = statement.executeQuery()){
+				if(rs.next()){
+					ign = rs.getString("ign");
+					name = rs.getString("name");
+				}
+			}
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		
+		if (ign == null) {
+			return ign;
+		} else {
+			return name;
+		}
 	}
 }

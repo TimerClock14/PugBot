@@ -26,7 +26,7 @@ public class CmdRemove extends Command {
 			qm.purgeQueue(m);
 			qm.updateTopic();
 			
-			return Utils.createMessage(String.format("%s removed from all queues", m.getEffectiveName()),
+			return Utils.createMessage(String.format("%s removed from all queues", getPlayerIgn(m)),
 					qm.getHeader(), true);
 		}
 		else {
@@ -44,7 +44,7 @@ public class CmdRemove extends Command {
 			queueNames = queueNames.substring(0, queueNames.length() - 2);
 			qm.updateTopic();
 			
-			return Utils.createMessage(String.format("%s removed from %s", m.getEffectiveName(), queueNames),
+			return Utils.createMessage(String.format("%s removed from %s", getPlayerIgn(m), queueNames),
 					qm.getHeader(), true);
 		}
 	}

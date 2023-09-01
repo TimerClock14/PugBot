@@ -24,7 +24,7 @@ public class CmdBan extends Command {
 
 		server.banUser(m.getUser().getIdLong());
 
-		return Utils.createMessage(String.format("`%s banned`", m.getEffectiveName()));
+		return Utils.createMessage(String.format("`%s banned`", getPlayerIgn(m)));
 	}
 
 	@Override

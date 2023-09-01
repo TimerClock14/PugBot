@@ -18,7 +18,7 @@ public class CmdAddAdmin extends Command {
 
 		server.addAdmin(m.getUser().getIdLong());
 
-		return Utils.createMessage(String.format("`%s is now an admin`", m.getEffectiveName()));
+		return Utils.createMessage(String.format("`%s is now an admin`", getPlayerIgn(m)));
 	}
 
 	@Override

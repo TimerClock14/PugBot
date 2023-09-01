@@ -59,7 +59,7 @@ public class CmdFinishGame extends Command {
 		
 		if(winningTeam != 0){
 			Member winner = (winningTeam == 1) ? teams[0].getCaptain() : teams[1].getCaptain();
-			String teamName = "Team " + winner.getEffectiveName();
+			String teamName = "Team " + getPlayerIgn(winner);
 			
 			return Utils.createMessage(title, String.format("**Winner:** %s%n**Duration:** %d Minutes",
 					teamName, duration), true);

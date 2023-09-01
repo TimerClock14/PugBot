@@ -5,7 +5,11 @@ import java.io.File;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
+import pugbot.core.Database;
+import pugbot.core.entities.Server;
+import pugbot.core.entities.ServerManager;
 
 
 public class Utils {
@@ -80,5 +84,31 @@ public class Utils {
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+	}
+
+	/*
+	 * Gets ign from member, or regular name if no nickname set
+	 */
+	public static String getPlayerIgn(Member player) {
+		long serverId = player.getGuild().getIdLong();
+		
+		return Utils.getPlayerIgn(player, ServerManager.getServer(serverId));
+	}
+
+	/*
+	 * Gets ign from member, or regular name if no nickname set
+	 */
+	public static String getPlayerIgn(Member player, Server server) {
+		long playerId = player.getUser().getIdLong();
+		return Utils.getPlayerIgn(playerId, server);
+	}
+
+	/*
+	 * Gets ign from member, or regular name if no nickname set
+	 */
+	public static String getPlayerIgn(long playerId, Server server) {
+		String fetchedNickname = Database.queryGetPlayerIgn(server.getId(), playerId);
+
+		return fetchedNickname;
 	}
 }

@@ -206,7 +206,7 @@ public class Server {
 			long minutes = TimeUnit.MINUTES.convert(timeDiffMs, TimeUnit.MILLISECONDS);
 			
 			if (minutes >= timeout) {
-				String msg = String.format(format, member.getEffectiveName(), timeout);
+				String msg = String.format(format, Utils.getPlayerIgn(member, this), timeout);
 				eb.setDescription(msg);
 				mb.setContent(member.getAsMention());
 				mb.setEmbed(eb.build());
@@ -229,7 +229,7 @@ public class Server {
 			queueManager.updateTopic();
 
 			String msg = String.format("%s has been removed from all queues after being offline for %s minutes",
-					member.getEffectiveName(), settingsManager.getDCTimeout());
+					Utils.getPlayerIgn(member, this), settingsManager.getDCTimeout());
 
 			getPugChannel().sendMessage(Utils.createMessage("", msg, false)).queue();
 		}

@@ -389,7 +389,7 @@ public class Game {
 			
 			
 			
-			builder.append(m.getEffectiveName() + ", ");
+			builder.append(Utils.getPlayerIgn(m, ServerManager.getServer(serverId)) + ", ");
 		}
 		
 		builder.delete(builder.length() - 2, builder.length());

@@ -19,7 +19,7 @@ public class CmdLeaveGroup extends Command {
 		
 		server.getGuild().getController().removeSingleRoleFromMember(caller, role).queue();
 		
-		return Utils.createMessage(String.format("`%s left the group: %s`", caller.getEffectiveName(), groupName));
+		return Utils.createMessage(String.format("`%s left the group: %s`", Utils.getPlayerIgn(caller), groupName));
 	}
 
 	@Override

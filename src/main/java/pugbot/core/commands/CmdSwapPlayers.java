@@ -23,7 +23,7 @@ public class CmdSwapPlayers extends Command {
 		Game game = qm.getPlayersGame(p1);
 		
 		if(game == null){
-			throw new InvalidUseException(String.format("%s is not in-game", p1.getEffectiveName()));
+			throw new InvalidUseException(String.format("%s is not in-game", getPlayerIgn(p1)));
 		}
 		
 		if(!(game.isCaptain(caller) || server.isAdmin(caller))){
@@ -49,7 +49,7 @@ public class CmdSwapPlayers extends Command {
 		game.swapPlayers(p1, p2);
 		
 		return Utils.createMessage(
-				String.format("`%s has been swapped with %s`", p1.getEffectiveName(), p2.getEffectiveName()));
+				String.format("`%s has been swapped with %s`", getPlayerIgn(p1), getPlayerIgn(p2)));
 	}
 
 	@Override

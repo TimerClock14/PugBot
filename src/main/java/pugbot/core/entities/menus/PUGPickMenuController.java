@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.dv8tion.jda.core.entities.Member;
+import pugbot.Utils;
 import pugbot.core.entities.PUGTeam;
 
 public class PUGPickMenuController extends MenuController<PUGPickMenu> {
@@ -24,8 +25,8 @@ public class PUGPickMenuController extends MenuController<PUGPickMenu> {
 		parsePickPattern(pickPattern);
 		
 		String title = "Captaining vs. ";
-		getMenu(0).setTitle(title + captain2.getEffectiveName());
-		getMenu(1).setTitle(title + captain1.getEffectiveName());
+		getMenu(0).setTitle(title + Utils.getPlayerIgn(captain2));
+		getMenu(1).setTitle(title + Utils.getPlayerIgn(captain1));
 		
 		getMenu(0).nextTurn();
 		getMenu(1).setEmbed();
@@ -74,7 +75,7 @@ public class PUGPickMenuController extends MenuController<PUGPickMenu> {
 		MenuOptions options = new MenuOptions(5);
 		
 		for(Member m : playerPool) {
-			options.addOption(m.getEffectiveName());
+			options.addOption(Utils.getPlayerIgn(m));
 		}
 		
 		return options;

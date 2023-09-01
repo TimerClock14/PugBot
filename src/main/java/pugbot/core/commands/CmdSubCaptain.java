@@ -26,7 +26,7 @@ public class CmdSubCaptain extends Command {
 		Game game = qm.getPlayersGame(caller);
 
 		if (!game.isCaptain(target)) {
-			throw new InvalidUseException(target.getEffectiveName() + " is not a captain in your game");
+			throw new InvalidUseException(getPlayerIgn(target) + " is not a captain in your game");
 		}
 
 		if (game.isCaptain(caller)) {
@@ -35,8 +35,8 @@ public class CmdSubCaptain extends Command {
 
 		game.subCaptain(caller, target);
 
-		return Utils.createMessage(String.format("`%s has replaced %s as captain`", caller.getEffectiveName(),
-				target.getEffectiveName()));
+		return Utils.createMessage(String.format("`%s has replaced %s as captain`", getPlayerIgn(caller),
+				getPlayerIgn(target)));
 	}
 
 	@Override

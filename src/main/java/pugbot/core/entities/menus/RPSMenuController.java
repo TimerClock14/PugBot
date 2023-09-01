@@ -1,6 +1,7 @@
 package pugbot.core.entities.menus;
 
 import net.dv8tion.jda.core.entities.Member;
+import pugbot.Utils;
 import pugbot.core.Constants;
 import pugbot.core.Database;
 import pugbot.core.entities.RPSMove;
@@ -20,8 +21,8 @@ public class RPSMenuController extends MenuController<RPSMenu> {
 				Constants.Emoji.RAISED_HAND,
 				Constants.Emoji.V);
 		
-		getMenu(0).setTitle(title + p2.getEffectiveName());
-		getMenu(1).setTitle(title + p1.getEffectiveName());
+		getMenu(0).setTitle(title + Utils.getPlayerIgn(p2));
+		getMenu(1).setTitle(title + Utils.getPlayerIgn(p1));
 	}
 
 	public Member getWinner() {

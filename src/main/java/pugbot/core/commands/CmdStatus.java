@@ -45,7 +45,7 @@ public class CmdStatus extends Command {
 				status.append("**IN QUEUE**: ");
 				
 				for (Member m : q.getPlayersInQueue()) {
-					status.append(m.getEffectiveName() + ", ");
+					status.append(getPlayerIgn(m) + ", ");
 				}
 				
 				status.delete(status.length() - 2, status.length());
@@ -59,7 +59,7 @@ public class CmdStatus extends Command {
 					
 					if(g.getStatus() == GameStatus.PICKING) {
 						for (Member m : g.getPlayers()) {
-							status.append(m.getEffectiveName() + ", ");
+							status.append(getPlayerIgn(m) + ", ");
 						}
 						
 						status.delete(status.length() - 2, status.length());

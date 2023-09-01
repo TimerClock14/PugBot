@@ -9,6 +9,8 @@ import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 
+import pugbot.Utils;
+
 public class PUGTeam {
 	
 	private Member captain;
@@ -52,11 +54,11 @@ public class PUGTeam {
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append(captain.getEffectiveName() + ": ");
+		builder.append(Utils.getPlayerIgn(captain) + ": ");
 		
 		if(playerMap.size() > 0) {
 			for(Member player : getPlayers()) {
-				builder.append(player.getEffectiveName() + ", ");
+				builder.append(Utils.getPlayerIgn(player) + ", ");
 			}
 			
 			builder.delete(builder.length() - 2, builder.length());
@@ -72,7 +74,7 @@ public class PUGTeam {
 		}
 		
 		try{
-			String name = "Team " + captain.getEffectiveName();
+			String name = "Team " + Utils.getPlayerIgn(captain);
 			
 			Guild guild = captain.getGuild();
 			voiceChannel = guild.getController().createVoiceChannel(name).complete();
@@ -85,7 +87,7 @@ public class PUGTeam {
 	
 	public void updateVoiceChannel() {
 		if(voiceChannel != null) {
-			voiceChannel.getManager().setName("Team " + captain.getEffectiveName()).queue();
+			voiceChannel.getManager().setName("Team " + Utils.getPlayerIgn(captain)).queue();
 		}
 	}
 	
